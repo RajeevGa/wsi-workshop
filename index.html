@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WSI Workshop 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        /* Header */
+        header {
+            background: #2c5aa0;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: opacity 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Home page layout with sidebar */
+        .home-layout {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .main-content {
+            min-width: 0;
+        }
+
+        .sidebar {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #2c5aa0;
+            height: fit-content;
+            position: sticky;
+            top: 80px;
+        }
+
+        .sidebar h3 {
+            color: #2c5aa0;
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar p {
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Title Section */
+        .title-section {
+            text-align: center;
+            margin: 2rem 0 1.5rem 0;
+        }
+
+        .workshop-label {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 0.3rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: #2c5aa0;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .event-info {
+            font-size: 1.1rem;
+            color: #555;
+            margin-top: 0.5rem;
+        }
+
+        /* Banner/Diagram Placeholder */
+        .banner-section {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 2rem;
+            background: #f5f5f5;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+        }
+
+        .banner-section p {
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Section Styles */
+        section {
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #2c5aa0;
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2c5aa0;
+        }
+
+        h3 {
+            color: #2c5aa0;
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul {
+            margin-left: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Logos Section */
+        .logos-section {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .logo-category {
+            margin-bottom: 2rem;
+        }
+
+        .logo-category h3 {
+            color: #2c5aa0;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .logos-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .logo-box {
+            width: 150px;
+            height: 80px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .logo-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Submission Categories */
+        .submission-categories {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .category {
+            flex: 1;
+            min-width: 250px;
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-left: 4px solid #2c5aa0;
+        }
+
+        .category h3 {
+            color: #2c5aa0;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            margin-top: 0;
+        }
+
+        /* Important Dates Box */
+        .dates-box {
+            background: #fff9e6;
+            border: 1px solid #f0c419;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .dates-box p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Keynote Speakers */
+        .keynote-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .keynote-speaker {
+            display: flex;
+            gap: 1.5rem;
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .keynote-speaker img {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .keynote-info h3 {
+            color: #2c5aa0;
+            font-size: 1.3rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .keynote-info .affiliation {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .keynote-info .talk-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Committee Grid */
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .committee-member {
+            text-align: center;
+        }
+
+        .committee-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid #2c5aa0;
+        }
+
+        .committee-member h4 {
+            color: #2c5aa0;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .committee-member p {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background: #f5f5f5;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Links */
+        a {
+            color: #2c5aa0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .submission-categories {
+                flex-direction: column;
+            }
+
+            .keynote-speaker {
+                flex-direction: column;
+            }
+
+            .keynote-speaker img {
+                width: 100%;
+                height: 200px;
+            }
+
+            .home-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <nav>
+            <ul class="nav-links">
+                <li><a onclick="showTab('home')">WSI 2025</a></li>
+                <li><a onclick="showTab('committee')">Organizing Committee</a></li>
+                <li><a onclick="showTab('call')">Call for Participation</a></li>
+                <li><a onclick="showTab('registration')">Registration</a></li>
+                <li><a onclick="showTab('program')">Program</a></li>
+                <li><a onclick="showTab('contact')">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- HOME TAB -->
+        <div id="home" class="tab-content active">
+            <!-- Title Section -->
+            <div class="title-section">
+                <p class="workshop-label">Workshop on:</p>
+                <h1>Wireless Systems Innovation (WSI) 2025</h1>
+                <div class="event-info">
+                    <p><strong>Date:</strong> [To Be Announced]</p>
+                    <p><strong>Location:</strong> [To Be Announced]</p>
+                </div>
+            </div>
+
+            <!-- Banner/Diagram Placeholder -->
+            <div class="banner-section">
+                <p>[Workshop Banner / System Diagram / Concept Image]</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">Replace this section with your workshop banner or architecture diagram</p>
+            </div>
+
+            <!-- Main content with sidebar layout -->
+            <div class="home-layout">
+                <div class="main-content">
+                    <!-- About / Scope -->
+                    <section>
+                        <h2>Scope of the Workshop</h2>
+                        <p>The Wireless Systems Innovation (WSI) Workshop provides a collaborative forum for advancing experimental research, prototyping, and system design in radio-based communications, sensing, and navigation. WSI brings together researchers, engineers, and practitioners from academia, industry, startups, and open-source communities to share insights and foster innovation.</p>
+                        <p>The two-day program features invited talks from domain experts, technical tutorials, and poster/demo sessions. WSI provides a platform for collaboration, knowledge exchange, and shaping future directions in wireless systems research.</p>
+                    </section>
+                </div>
+
+                <!-- Sidebar with Latest Updates -->
+                <aside class="sidebar">
+                    <h3>Latest Updates</h3>
+                    <p><strong>Registration:</strong><br>[To Be Announced]</p>
+                    <p><strong>Submission Deadline:</strong><br>[To Be Announced]</p>
+                    <p><strong>Contact:</strong><br><a href="mailto:workshop@example.com">workshop@example.com</a></p>
+                </aside>
+            </div>
+        </div>
+
+        <!-- KEYNOTE SPEAKERS TAB -->
+        <div id="keynotes" class="tab-content">
+            <h1>Keynote Speakers</h1>
+
+            <div class="keynote-grid">
+                <!-- Keynote Speaker 1 -->
+                <div class="keynote-speaker">
+                    <img src="https://via.placeholder.com/150" alt="Keynote Speaker 1">
+                    <div class="keynote-info">
+                        <h3>[Speaker Name]</h3>
+                        <p class="affiliation">[Institution/Company], [Country]</p>
+                        <p class="talk-title">Talk Title: "[To Be Announced]"</p>
+                        <p><strong>Abstract:</strong> [Brief description of the keynote talk. This section will contain information about the speaker's research focus and the main themes they will address in their presentation.]</p>
+                        <p><strong>Bio:</strong> [Brief biography of the speaker including their research interests, notable achievements, and current position.]</p>
+                    </div>
+                </div>
+
+                <!-- Keynote Speaker 2 -->
+                <div class="keynote-speaker">
+                    <img src="https://via.placeholder.com/150" alt="Keynote Speaker 2">
+                    <div class="keynote-info">
+                        <h3>[Speaker Name]</h3>
+                        <p class="affiliation">[Institution/Company], [Country]</p>
+                        <p class="talk-title">Talk Title: "[To Be Announced]"</p>
+                        <p><strong>Abstract:</strong> [Brief description of the keynote talk. This section will contain information about the speaker's research focus and the main themes they will address in their presentation.]</p>
+                        <p><strong>Bio:</strong> [Brief biography of the speaker including their research interests, notable achievements, and current position.]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KEYNOTE SPEAKERS TAB -->
+        <div id="keynotes" class="tab-content">
+            <h1>Keynote Speakers</h1>
+
+            <div class="keynote-grid">
+                <!-- Keynote Speaker 1 -->
+                <div class="keynote-speaker">
+                    <img src="https://via.placeholder.com/150" alt="Keynote Speaker 1">
+                    <div class="keynote-info">
+                        <h3>[Speaker Name]</h3>
+                        <p class="affiliation">[Institution/Company], [Country]</p>
+                        <p class="talk-title">Talk Title: "[To Be Announced]"</p>
+                        <p><strong>Abstract:</strong> [Brief description of the keynote talk. This section will contain information about the speaker's research focus and the main themes they will address in their presentation.]</p>
+                        <p><strong>Bio:</strong> [Brief biography of the speaker including their research interests, notable achievements, and current position.]</p>
+                    </div>
+                </div>
+
+                <!-- Keynote Speaker 2 -->
+                <div class="keynote-speaker">
+                    <img src="https://via.placeholder.com/150" alt="Keynote Speaker 2">
+                    <div class="keynote-info">
+                        <h3>[Speaker Name]</h3>
+                        <p class="affiliation">[Institution/Company], [Country]</p>
+                        <p class="talk-title">Talk Title: "[To Be Announced]"</p>
+                        <p><strong>Abstract:</strong> [Brief description of the keynote talk. This section will contain information about the speaker's research focus and the main themes they will address in their presentation.]</p>
+                        <p><strong>Bio:</strong> [Brief biography of the speaker including their research interests, notable achievements, and current position.]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CALL FOR PARTICIPATION TAB -->
+        <div id="call" class="tab-content">
+            <h1>Call for Posters and Demos</h1>
+            
+            <section>
+                <p>WSI Workshop 2025 invites submissions for posters and live demonstrations showcasing innovative research, experimental prototypes, and practical implementations in wireless communications, sensing, and navigation systems. We welcome contributions from researchers, engineers, practitioners, and students working on radio-based systems spanning software-defined radio platforms, next-generation networks, positioning technologies, and emerging applications.</p>
+
+                <h2>Submission Categories</h2>
+                <div class="submission-categories">
+                    <div class="category">
+                        <h3>Posters</h3>
+                        <p>Research results, work-in-progress, experimental findings, or system designs suitable for interactive presentation. Submissions should include an extended abstract (2 pages).</p>
+                    </div>
+                    <div class="category">
+                        <h3>Demos</h3>
+                        <p>Live demonstrations of prototypes, testbeds, platforms, or applications. Submissions should include a demonstration description (2 pages) outlining the system, setup requirements, and key features to be showcased.</p>
+                    </div>
+                </div>
+
+                <p>All submissions will be peer-reviewed. Accepted posters and demos will be presented in interactive sessions throughout the workshop, providing opportunities for in-depth discussions with attendees.</p>
+                
+                <h2>Submission Guidelines</h2>
+                <ul>
+                    <li>Submissions should be in PDF format</li>
+                    <li>Maximum length: 2 pages (including references)</li>
+                    <li>Use standard conference format (e.g., IEEE conference template)</li>
+                    <li>Submit via: <strong>[Submission Link - To Be Announced]</strong></li>
+                </ul>
+
+                <h2>Topics of Interest</h2>
+                <p>Topics of interest include but are not limited to:</p>
+
+                <h3>Software-Defined Radio and Platforms</h3>
+                <ul>
+                    <li>SDR architectures and implementations</li>
+                    <li>FPGA-based radio systems</li>
+                    <li>Open-source SDR frameworks (GNU Radio, srsRAN, OpenAirInterface, etc.)</li>
+                    <li>Real-time signal processing</li>
+                </ul>
+
+                <h3>Experimental Testbeds and Emulation</h3>
+                <ul>
+                    <li>Wireless testbed design and deployment</li>
+                    <li>Network emulators and simulators</li>
+                    <li>Over-the-air testing methodologies</li>
+                    <li>Channel modeling and characterization</li>
+                </ul>
+
+                <h3>5G/6G and Next-Generation Networks</h3>
+                <ul>
+                    <li>Open RAN (O-RAN) systems</li>
+                    <li>Network slicing and virtualization</li>
+                    <li>Massive MIMO systems</li>
+                    <li>mmWave and sub-THz communications</li>
+                </ul>
+
+                <h3>Navigation and Positioning</h3>
+                <ul>
+                    <li>GNSS systems and applications</li>
+                    <li>Alternative PNT technologies</li>
+                    <li>5G/WiFi-based positioning</li>
+                    <li>Indoor localization systems</li>
+                </ul>
+
+                <h3>Spectrum and Sensing</h3>
+                <ul>
+                    <li>Spectrum sensing and monitoring</li>
+                    <li>Cognitive radio systems</li>
+                    <li>Dynamic spectrum access</li>
+                    <li>Radar and radio sensing applications</li>
+                </ul>
+
+                <h3>Emerging Applications</h3>
+                <ul>
+                    <li>IoT and sensor networks</li>
+                    <li>Connected and autonomous vehicles</li>
+                    <li>Satellite communications</li>
+                    <li>Wireless security and privacy</li>
+                    <li>Machine learning for wireless systems</li>
+                </ul>
+
+                <h2>Important Dates</h2>
+                <div class="dates-box">
+                    <p><strong>Poster/Demo Submission Deadline:</strong> [To Be Announced]</p>
+                    <p><strong>Notification of Acceptance:</strong> [To Be Announced]</p>
+                    <p><strong>Camera-Ready Deadline:</strong> [To Be Announced]</p>
+                    <p><strong>Workshop Date:</strong> [To Be Announced]</p>
+                </div>
+                <p><strong>Note:</strong> All deadlines are 11:59 PM Anywhere on Earth (AoE)</p>
+            </section>
+        </div>
+
+        <!-- REGISTRATION TAB -->
+        <div id="registration" class="tab-content">
+            <h1>Registration</h1>
+            
+            <section>
+                <p>Registration information will be available soon. Please check back for updates.</p>
+                
+                <h2>Registration Fees</h2>
+                <p>[To Be Announced]</p>
+                
+                <h2>Registration Link</h2>
+                <p>[To Be Announced]</p>
+            </section>
+        </div>
+
+        <!-- PROGRAM TAB -->
+        <div id="program" class="tab-content">
+            <h1>Program</h1>
+            
+            <section>
+                <p>The detailed workshop program will be announced closer to the event date.</p>
+
+                <h2>Keynote Speakers</h2>
+                <div class="keynote-grid">
+                    <!-- Keynote Speaker 1 -->
+                    <div class="keynote-speaker">
+                        <img src="https://via.placeholder.com/150" alt="Keynote Speaker 1">
+                        <div class="keynote-info">
+                            <h3>[Speaker Name]</h3>
+                            <p class="affiliation">[Institution/Company], [Country]</p>
+                            <p class="talk-title">Talk Title: "[To Be Announced]"</p>
+                            <p><strong>Abstract:</strong> [Brief description of the keynote talk.]</p>
+                            <p><strong>Bio:</strong> [Brief biography of the speaker.]</p>
+                        </div>
+                    </div>
+
+                    <!-- Keynote Speaker 2 -->
+                    <div class="keynote-speaker">
+                        <img src="https://via.placeholder.com/150" alt="Keynote Speaker 2">
+                        <div class="keynote-info">
+                            <h3>[Speaker Name]</h3>
+                            <p class="affiliation">[Institution/Company], [Country]</p>
+                            <p class="talk-title">Talk Title: "[To Be Announced]"</p>
+                            <p><strong>Abstract:</strong> [Brief description of the keynote talk.]</p>
+                            <p><strong>Bio:</strong> [Brief biography of the speaker.]</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Workshop Schedule</h2>
+                <p>[Schedule will be announced]</p>
+            </section>
+        </div>
+
+        <!-- CONTACT US TAB -->
+        <div id="contact" class="tab-content">
+            <h1>Contact Us</h1>
+            
+            <section>
+                <p>For questions or more information about WSI Workshop 2025, please contact:</p>
+                
+                <h2>General Inquiries</h2>
+                <p><strong>Email:</strong> <a href="mailto:workshop@example.com">workshop@example.com</a></p>
+                
+                <h2>Organizing Committee</h2>
+                <p>[Names and contact information will be added]</p>
+            </section>
+        </div>
+
+        <!-- COMMITTEE TAB -->
+        <div id="committee" class="tab-content">
+            <h1>Organizing Committee</h1>
+            
+            <section>
+                <h2>General Chairs</h2>
+                <div class="committee-grid">
+                    <div class="committee-member">
+                        <img src="https://via.placeholder.com/150" alt="Chair Name">
+                        <h4>[Name]</h4>
+                        <p>[Institution]</p>
+                    </div>
+                    <div class="committee-member">
+                        <img src="https://via.placeholder.com/150" alt="Chair Name">
+                        <h4>[Name]</h4>
+                        <p>[Institution]</p>
+                    </div>
+                </div>
+
+                <h2>Technical Program Committee Chairs</h2>
+                <div class="committee-grid">
+                    <div class="committee-member">
+                        <img src="https://via.placeholder.com/150" alt="TPC Chair">
+                        <h4>[Name]</h4>
+                        <p>[Institution]</p>
+                    </div>
+                    <div class="committee-member">
+                        <img src="https://via.placeholder.com/150" alt="TPC Chair">
+                        <h4>[Name]</h4>
+                        <p>[Institution]</p>
+                    </div>
+                </div>
+
+                <h2>Publicity Chairs</h2>
+                <div class="committee-grid">
+                    <div class="committee-member">
+                        <img src="https://via.placeholder.com/150" alt="Publicity Chair">
+                        <h4>[Name]</h4>
+                        <p>[Institution]</p>
+                    </div>
+                </div>
+
+                <h2>Web Chair</h2>
+                <div class="committee-grid">
+                    <div class="committee-member">
+                        <img src="https://via.placeholder.com/150" alt="Web Chair">
+                        <h4>[Name]</h4>
+                        <p>[Institution]</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <!-- In Cooperation With -->
+        <section class="logos-section">
+            <div class="logo-category">
+                <h3>In Cooperation With</h3>
+                <div class="logos-grid">
+                    <div class="logo-box">
+                        <p style="color: #999; font-size: 0.9rem;">Logo 1</p>
+                    </div>
+                    <div class="logo-box">
+                        <p style="color: #999; font-size: 0.9rem;">Logo 2</p>
+                    </div>
+                    <div class="logo-box">
+                        <p style="color: #999; font-size: 0.9rem;">Logo 3</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sponsors -->
+            <div class="logo-category">
+                <h3>Sponsored By</h3>
+                <div class="logos-grid">
+                    <div class="logo-box">
+                        <p style="color: #999; font-size: 0.9rem;">Sponsor 1</p>
+                    </div>
+                    <div class="logo-box">
+                        <p style="color: #999; font-size: 0.9rem;">Sponsor 2</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <p>&copy; 2025 WSI Workshop. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">Contact: <a href="mailto:workshop@example.com">workshop@example.com</a></p>
+    </footer>
+
+    <script>
+        function showTab(tabId) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
